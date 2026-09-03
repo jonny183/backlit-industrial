@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backlit Industrial — Real work, actually seen.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --white-2: #f2f2f2;
+    --black: #000000;
+    --grey: #595959;
+    --grey-light: #8a8a8a;
+    --border: #e0e0e0;
+    --orange: #ff5b1f;
+    --cobalt: #1a5aff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--cobalt);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo .mark {
+    width: 14px;
+    height: 14px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .logo .word {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  nav a { text-decoration: none; }
+  nav a:hover { color: var(--cobalt); }
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 96px 0 80px;
+  }
+
+  .hero-inner {
+    max-width: 640px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) 0.1s forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-inner { animation: none; opacity: 1; transform: none; }
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 5.5vw, 58px);
+    line-height: 1.08;
+    margin-bottom: 22px;
+  }
+
+  .hero .rule {
+    width: 56px;
+    height: 4px;
+    background: var(--cobalt);
+    margin-bottom: 22px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--grey);
+    max-width: 460px;
+    margin-bottom: 32px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 14px 26px;
+    text-decoration: none;
+    border: 1px solid var(--black);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 13px 25px;
+    text-decoration: none;
+    border: 1px solid var(--black);
+    margin-left: 12px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-outline:hover { background: var(--black); color: var(--white); }
+
+  /* ---------- Site graphic strip (placeholder for real photography) ---------- */
+
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .strip .cell {
+    aspect-ratio: 4 / 5;
+    background: var(--white-2);
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+  }
+
+  .strip .cell:last-child { border-right: none; }
+
+  .strip svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  @media (max-width: 780px) {
+    .strip { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .strip-note {
+    font-size: 13px;
+    color: var(--grey-light);
+    padding: 14px 0 0;
+  }
+
+  /* ---------- How section ---------- */
+
+  section { padding: 96px 0; }
+
+  .section-head {
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(28px, 3.5vw, 36px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-head p {
+    color: var(--grey);
+    font-size: 16px;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  @media (max-width: 780px) {
+    .how-grid { grid-template-columns: 1fr; }
+  }
+
+  .how-item .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--grey-light);
+    margin-bottom: 14px;
+  }
+
+  .how-item h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .how-item p {
+    color: var(--grey);
+    font-size: 15px;
+  }
+
+  .how-item .bar {
+    width: 28px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 18px;
+  }
+
+  /* ---------- Offer section ---------- */
+
+  .offer { background: var(--white-2); }
+
+  .offer-hook {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(22px, 2.8vw, 28px);
+    max-width: 620px;
+    margin-bottom: 40px;
+    line-height: 1.35;
+  }
+
+  .term-toggle {
+    display: inline-flex;
+    border: 1px solid var(--black);
+    margin-bottom: 40px;
+  }
+
+  .term-toggle button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+    color: var(--black);
+    border-right: 1px solid var(--black);
+  }
+
+  .term-toggle button:last-child { border-right: none; }
+
+  .term-toggle button[aria-pressed="true"] {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .term-note {
+    display: block;
+    font-size: 13px;
+    color: var(--grey-light);
+    margin: -28px 0 40px;
+  }
+
+  .tier-table-wrap {
+    overflow-x: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+
+  table.tier-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+  }
+
+  .tier-table th, .tier-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .tier-table thead th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    background: var(--white-2);
+    border-bottom: 1px solid var(--black);
+  }
+
+  .tier-table thead th.is-featured { background: var(--black); color: var(--white); }
+
+  .tier-table .row-label {
+    color: var(--grey);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .tier-table td.price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .tier-table td.price .per {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--grey-light);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .tier-table td.is-featured-col { background: var(--white-2); }
+
+  .tier-table tbody tr:last-child td { font-weight: 500; color: var(--black); border-bottom: none; }
+
+  .fine-print {
+    font-size: 12px;
+    color: var(--grey-light);
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Add-ons ---------- */
+
+  .addons {
+    margin-top: 72px;
+  }
+
+  .addons h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 780px) {
+    .addon-grid { grid-template-columns: 1fr; }
+  }
+
+  .addon {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+  }
+
+  .addon .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .addon .price {
+    font-size: 13px;
+    color: var(--grey-light);
+    margin-bottom: 10px;
+  }
+
+  .addon p {
+    font-size: 14px;
+    color: var(--grey);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .word {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  footer .meta {
+    font-size: 13px;
+    color: var(--grey-light);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="word">Backlit Industrial</span>
+    </a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#offer">The offer</a>
+      <a href="#contact">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1>Real work,<br>actually seen.</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p>Backlit Industrial is the on-call crew that turns a normal day on site into tender photos, recruitment content, and the case study that gets your work in front of the people who need to see it.</p>
+        <a class="btn" href="#contact">Get started</a>
+        <a class="btn-outline" href="#offer">See the offer</a>
+      </div>
+    </div>
+
+    <div class="strip" aria-hidden="true">
+      <div class="cell">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="250" fill="#f2f2f2"/>
+          <path d="M40 220 L40 90 L100 40 L160 90 L160 220" fill="none" stroke="#000000" stroke-width="3"/>
+          <line x1="40" y1="150" x2="160" y2="150" stroke="#ff5b1f" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="250" fill="#f2f2f2"/>
+          <rect x="60" y="60" width="80" height="160" fill="none" stroke="#000000" stroke-width="3"/>
+          <line x1="60" y1="100" x2="140" y2="100" stroke="#000000" stroke-width="2"/>
+          <line x1="60" y1="140" x2="140" y2="140" stroke="#000000" stroke-width="2"/>
+          <line x1="60" y1="180" x2="140" y2="180" stroke="#1a5aff" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="250" fill="#f2f2f2"/>
+          <circle cx="100" cy="120" r="55" fill="none" stroke="#000000" stroke-width="3"/>
+          <line x1="100" y1="65" x2="100" y2="30" stroke="#000000" stroke-width="3"/>
+          <circle cx="100" cy="120" r="6" fill="#ff5b1f"/>
+        </svg>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="250" fill="#f2f2f2"/>
+          <polygon points="30,220 100,50 170,220" fill="none" stroke="#000000" stroke-width="3"/>
+          <line x1="65" y1="140" x2="135" y2="140" stroke="#ff5b1f" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+    <p class="wrap strip-note">Graphic placeholders — flagship case study photography goes here.</p>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>An embedded partner, not another vendor to brief.</h2>
+        <p>Every new production company starts at zero — re-explaining the sites, the safety requirements, the sub-brands, the tone. An embedded partner skips that, every time, which means more of what's worth capturing actually gets captured.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-item">
+          <div class="bar" aria-hidden="true"></div>
+          <h3>Site-ready, not scoped fresh each time</h3>
+          <p>Inductions, PPE, and site literacy are sorted up front, so a shoot never slows a job down or gets turned away at the gate.</p>
+        </div>
+        <div class="how-item">
+          <div class="bar" aria-hidden="true"></div>
+          <h3>One shoot, four audiences</h3>
+          <p>A single day on site is engineered to serve tenders, recruitment, sales enablement, and executive comms at once — not four separate briefs.</p>
+        </div>
+        <div class="how-item">
+          <div class="bar" aria-hidden="true"></div>
+          <h3>Documentary eye, not corporate gloss</h3>
+          <p>Real operational rhythm, shot as it happens — not staged handshakes and stock-photo poses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offer" class="offer">
+    <div class="wrap">
+      <div class="offer-hook">Get started with a content partner for less than minimum wage.</div>
+
+      <div class="term-toggle" role="group" aria-label="Billing commitment">
+        <button type="button" data-term="mtm" aria-pressed="false">Month-to-month</button>
+        <button type="button" data-term="six" aria-pressed="false">6-month</button>
+        <button type="button" data-term="annual" aria-pressed="true">Annual</button>
+      </div>
+      <span class="term-note" id="term-note">Annual commitment, invoiced quarterly — the lowest monthly rate on offer.</span>
+
+      <div class="tier-table-wrap">
+        <table class="tier-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Foundation</th>
+              <th class="is-featured">Growth</th>
+              <th>Platinum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Monthly investment</td>
+              <td class="price" data-tier="foundation">
+                $1,750<span class="per">per month, ex. GST</span>
+              </td>
+              <td class="price is-featured-col" data-tier="growth">
+                $3,500<span class="per">per month, ex. GST</span>
+              </td>
+              <td class="price" data-tier="platinum">
+                $7,000<span class="per">per month, ex. GST</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label">Best fit</td>
+              <td>Establish a professional baseline</td>
+              <td class="is-featured-col">Build steady visibility</td>
+              <td>Lead with confidence</td>
+            </tr>
+            <tr>
+              <td class="row-label">On-site time</td>
+              <td>Up to 1 day/month</td>
+              <td class="is-featured-col">Up to 2 days/month</td>
+              <td>Up to 4 days/month</td>
+            </tr>
+            <tr>
+              <td class="row-label">Coverage</td>
+              <td>Single site or project</td>
+              <td class="is-featured-col">Multiple sites or projects</td>
+              <td>Multi-site / flagship projects</td>
+            </tr>
+            <tr>
+              <td class="row-label">Photo deliverables</td>
+              <td>Up to 25 images/month</td>
+              <td class="is-featured-col">Up to 50 images/month</td>
+              <td>Up to 80 images/month</td>
+            </tr>
+            <tr>
+              <td class="row-label">Short-form video</td>
+              <td>2/month</td>
+              <td class="is-featured-col">2/month</td>
+              <td>4/month (~weekly)</td>
+            </tr>
+            <tr>
+              <td class="row-label">Long-form / case study</td>
+              <td>—</td>
+              <td class="is-featured-col">1/quarter</td>
+              <td>1/quarter</td>
+            </tr>
+            <tr>
+              <td class="row-label">Testimonials</td>
+              <td>2/year</td>
+              <td class="is-featured-col">4/year</td>
+              <td>Quarterly</td>
+            </tr>
+            <tr>
+              <td class="row-label">Employee spotlights</td>
+              <td>1/quarter</td>
+              <td class="is-featured-col">1/quarter, larger scope</td>
+              <td>Monthly</td>
+            </tr>
+            <tr>
+              <td class="row-label">Planning &amp; review</td>
+              <td>Monthly delivery overview</td>
+              <td class="is-featured-col">Quarterly check-in + annual report</td>
+              <td>Annual planning + quarterly reports</td>
+            </tr>
+            <tr>
+              <td class="row-label">Asset library</td>
+              <td>—</td>
+              <td class="is-featured-col">—</td>
+              <td>Structured setup included</td>
+            </tr>
+            <tr>
+              <td class="row-label">Ideal outcome</td>
+              <td>Look credible and current</td>
+              <td class="is-featured-col">Build momentum and consistency</td>
+              <td>Be the obvious, trusted choice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="fine-print">All pricing is exclusive of GST. Travel and travel-related expenses, site inductions, training, access requirements, or other costs not directly included in the agreed scope may be charged separately.</p>
+
+      <div class="addons">
+        <h3>Optional add-ons</h3>
+        <div class="addon-grid">
+          <div class="addon">
+            <div class="name">Case study production</div>
+            <div class="price">From $5,000 per project, or substituted for the monthly equivalent</div>
+            <p>A dedicated content package built around one project, client, or outcome — best suited where a small number of projects carry significant commercial value.</p>
+          </div>
+          <div class="addon">
+            <div class="name">Managed publishing (LinkedIn)</div>
+            <div class="price">From $400 per month</div>
+            <p>We plan, write, and publish content using the assets from your subscription — consistent visibility without ongoing decision-making on your end.</p>
+          </div>
+          <div class="addon">
+            <div class="name">Asset library setup</div>
+            <div class="price">From $2,500 — included at Platinum</div>
+            <p>A structured content library that supports long-term use of everything captured, across teams and platforms.</p>
+          </div>
+          <div class="addon">
+            <div class="name">Photo-only subscription</div>
+            <div class="price">From $1,100 per month</div>
+            <p>A simplified, photo-only option for businesses that need professional imagery without ongoing video production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom: 32px;">
+        <h2>Tell us what's coming up on site.</h2>
+        <p>A tender deadline, a new piece of gear, a project worth being proud of — reach out and we'll work out which tier fits.</p>
+      </div>
+      <a class="btn" href="mailto:jonny@backlitmedia.com.au">Email jonny@backlitmedia.com.au</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="word">Backlit Industrial</span>
+    <span class="meta">A Backlit Media studio · Adelaide, South Australia</span>
+  </div>
+</footer>
+
+<script>
+  const PRICES = {
+    mtm:    { foundation: 2300, growth: 4600, platinum: 9200 },
+    six:    { foundation: 2000, growth: 4000, platinum: 8000 },
+    annual: { foundation: 1750, growth: 3500, platinum: 7000 }
+  };
+  const NOTES = {
+    mtm: 'No lock-in — the most flexible option, priced accordingly.',
+    six: '6-month commitment — a middle-ground rate.',
+    annual: 'Annual commitment, invoiced quarterly — the lowest monthly rate on offer.'
+  };
+  const buttons = document.querySelectorAll('.term-toggle button');
+  const note = document.getElementById('term-note');
+  const fmt = n => '$' + n.toLocaleString('en-AU');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const term = btn.dataset.term;
+      buttons.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      note.textContent = NOTES[term];
+      document.querySelectorAll('[data-tier]').forEach(cell => {
+        const tier = cell.dataset.tier;
+        const per = cell.querySelector('.per');
+        cell.textContent = fmt(PRICES[term][tier]);
+        cell.appendChild(per);
+      });
+    });
+  });
+</script>
+</body>
+</html>
